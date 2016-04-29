@@ -37,7 +37,34 @@ if ARGV[0].downcase == 'class'
       attribute_accessor_syntax.push("attr_accessor :#{k}")
     end
   }
+  tests = []
+
+  skeleton = "describe #{class_name} do \n" + "  " + "let(:obj) { #{class_name}.new } \n end"
+  # attribute_accessor_syntax.each { |test|
+    # write actual test to a spec file using File operations
+  attr_hash.each { |k,v|
+    tests.push("describe #{k} do \n" + "  " + "it 'has a(n) #{k}' do \n" + "    " + "expect(:obj.#{k}).to be_kind_of(#{k}.class) \n" + "  " + "end \n end")
+  }
+  puts "Your test skeleton"
+  puts "========================================================================="
+  puts "\n"
+  puts skeleton
+  puts "\n"
+  puts "Include these in your #{class_name}: "
+  puts "========================================================================="
+  puts "\n"
+  attribute_accessor_syntax.each { |attr| puts attr }
+  puts "\n"
+  puts "Insert the following tests inside #{class_name} skeleton: "
+  puts "========================================================================="
+  puts "\n"
+  tests.each { |test| puts test }
 end
+
+
+
+
+# }
 
 if ARGV[0].downcase == 'method' || ARGV[0].downcase == 'function'
   puts "What is the name of the method?"
@@ -46,32 +73,13 @@ if ARGV[0].downcase == 'method' || ARGV[0].downcase == 'function'
   method_behaviour = STDIN.gets.chomp
   puts "What attribute does it modify?"
   modified_method = STDIN.gets.chomp
-  method_test = "describe #'#{method_name}' do \n" + '  ' + "it " +"#{method_behaviour} do \n" + '    ' + "expect {obj.#{method_name}}.to change {obj.#{modified_method}}.by(1)\n" + "  end\n" + "end" 
+  method_test = "describe #'#{method_name}' do \n" + '  ' + "it " +"#{method_behaviour} do \n" + '    ' + "expect {obj.#{method_name}}.to change {obj.#{modified_method}}.by(1)\n" + "  end\n" + "end"
+
+  puts "Your method test: "
+  puts "========================================================================="
+  puts "\n"
+  puts method_test
 end
-
-tests = []
-
-skeleton = "describe #{class_name} do \n" + "  " + "let(:obj) { #{class_name}.new } \n end"
-# attribute_accessor_syntax.each { |test|
-  # write actual test to a spec file using File operations
-  attr_hash.each { |k,v|
-    tests.push("describe #{k} do \n" + "  " + "it 'has a(n) #{k}' do \n" + "    " + "expect(:obj.#{k}).to be_kind_of(#{k}.class) \n" + "  " + "end \n end")
-  }
-# }
-puts "Your test skeleton"
-puts "========================================================================="
-puts "\n"
-puts skeleton
-puts "\n"
-puts "Include these in your #{class_name}: "
-puts "========================================================================="
-puts "\n"
-attribute_accessor_syntax.each { |attr| puts attr }
-puts "\n"
-puts "Insert the following tests inside #{class_name} skeleton: "
-puts "========================================================================="
-puts "\n"
-tests.each { |test| puts test }
 
 
 # end
