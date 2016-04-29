@@ -39,6 +39,15 @@ if ARGV[0].downcase == 'class'
   }
 end
 
+if ARGV[0].downcase == 'method' || ARGV[0].downcase == 'function'
+  puts "What is the name of the method?"
+  method_name = STDIN.gets.chomp
+  puts "What is the desired behavior / outcome of #{method_name}?"
+  method_behaviour = STDIN.gets.chomp
+  puts "What attribute does it modify?"
+  modified_method = STDIN.gets.chomp
+  method_test = "describe #'#{method_name}' do \n" + '  ' + "it " +"#{method_behaviour} do \n" + '    ' + "expect {obj.#{method_name}}.to change {obj.#{modified_method}}.by(1)\n" + "  end\n" + "end" 
+end
 
 tests = []
 
