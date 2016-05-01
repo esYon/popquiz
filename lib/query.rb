@@ -1,17 +1,14 @@
 require 'pry'
 require_relative 'popquiz'
 require_relative 'arg_parser'
+require_relative 'troubleshoot'
 
-# test_generator = Popquiz.new
-# helper = Troubleshoot.new
-
-# if ARGV[0] == 'Help'
-#   helper(ARGV[0])
-#   puts "Please enter what you need help with"
-#   help = gets.chomp
-#   if help.downcase == 'object attributes'
-#     puts "Object attributes accessors are used to communicate your intent to someone reading your code,
-#     and allow for sharing of operations, values, and more."
+if ARGV[0].downcase == 'help'
+  puts "Please enter what you need help with"
+  topic = STDIN.gets.chomp
+  response = Troubleshoot.help(topic)
+  puts response
+end
 if ARGV[0].downcase == 'class'
   puts "What is the name of the object?"
   class_name = STDIN.gets.chomp
@@ -61,11 +58,6 @@ if ARGV[0].downcase == 'class'
   tests.each { |test| puts test }
 end
 
-
-
-
-# }
-
 if ARGV[0].downcase == 'method' || ARGV[0].downcase == 'function'
   puts "What is the name of the method?"
   method_name = STDIN.gets.chomp
@@ -73,14 +65,10 @@ if ARGV[0].downcase == 'method' || ARGV[0].downcase == 'function'
   method_behaviour = STDIN.gets.chomp
   puts "What attribute does it modify?"
   modified_method = STDIN.gets.chomp
-  method_test = "describe #'#{method_name}' do \n" + '  ' + "it " +"#{method_behaviour} do \n" + '    ' + "expect {obj.#{method_name}}.to change {obj.#{modified_method}}.by(1)\n" + "  end\n" + "end"
+  method_test = "describe ##{method_name} do \n" + '  ' + "it " +"#{method_behaviour} do \n" + '    ' + "expect {obj.#{method_name}}.to change {obj.#{modified_method}}.by(1)\n" + "  end\n" + "end"
 
   puts "Your method test: "
   puts "========================================================================="
   puts "\n"
   puts method_test
 end
-
-
-# end
-# end
