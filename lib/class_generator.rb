@@ -37,24 +37,18 @@ class ClassGenerator
     attr_hash.each { |k,v|
       tests.push("describe #{k} do \n" + "  " + "it 'has a(n) #{k}' do \n" + "    " + "expect(:obj.#{k}).to be_kind_of(#{k}.class) \n" + "  " + "end \n end")
     }
-    puts "Your test skeleton"
-    puts "========================================================================="
-    puts "\n"
-    puts skeleton
-    puts "\n"
     puts "Include these in your #{class_name}: "
     puts "========================================================================="
     puts "\n"
     attribute_accessor_syntax.each { |attr| puts attr }
     puts "\n"
-    puts "Insert the following tests inside #{class_name} skeleton: "
-    puts "========================================================================="
-    puts "\n"
+
     testfile = TestFileGenerator.create_file(class_name)
-    File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}\n'
-")}
+    File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}\n'")}
     File.open(testfile, 'a') { |f| f.write("#{skeleton}\n")}
     tests.each { |test| File.open(testfile, 'a') {|f| f.write("#{test}\n")} }
     File.open(testfile, 'a') { |f| f.write("end")}
+
+    testfile
   end
 end

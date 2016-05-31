@@ -4,8 +4,8 @@ describe ClassGenerator do
   let(:cgen) { ClassGenerator.new }
 
   describe "ClassGenerator" do
-    it "generates a test skeleton and attribute accessors" do
-      expect(:cgen).to be_a_kind_of(string)
+    it "generates a spec file" do
+      expect(:cgen).to exist
     end
   end
 
