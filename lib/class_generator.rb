@@ -1,21 +1,23 @@
 require_relative 'arg_parser'
+require_relative 'test_file_generator'
 
 class ClassGenerator
   include ArgParser
+  include TestFileGenerator
   def initialize
     puts "What is the name of the object?"
     class_name = STDIN.gets.chomp
+    testfile = TestFileGenerator.create_file(class_name)
     puts "Please enter the attributes of #{class_name}: "
     attributes = STDIN.gets.chomp
     parsed_attrs = ArgParser.parse_args(attributes)
-    parsed_attrs = parsed_attrs
     accessor_status = []
     parsed_attrs.each { |arg|
       puts "Must #{arg} be readable, writable, or both?"
         status = STDIN.gets.chomp
         accessor_status.push(status)
     }
-    # binding.pry
+
     attr_hash = parsed_attrs.zip(accessor_status).to_h
     attribute_accessor_syntax = []
     attr_hash.each { |k,v|

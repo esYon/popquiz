@@ -1,11 +1,7 @@
-require 'pry'
-
 require_relative 'arg_parser'
 require_relative 'troubleshoot'
 require_relative 'class_generator'
 require_relative 'method_generator'
-
-
 
 class Query
 
@@ -26,6 +22,5 @@ class Query
     method_gen = MethodGenerator.new
     method_gen
   end
-
 
 end
