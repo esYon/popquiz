@@ -7,7 +7,7 @@ class ClassGenerator
   def initialize
     puts "What is the name of the object?"
     class_name = STDIN.gets.chomp
-    testfile = TestFileGenerator.create_file(class_name)
+
     puts "Please enter the attributes of #{class_name}: "
     attributes = STDIN.gets.chomp
     parsed_attrs = ArgParser.parse_args(attributes)
@@ -50,6 +50,11 @@ class ClassGenerator
     puts "Insert the following tests inside #{class_name} skeleton: "
     puts "========================================================================="
     puts "\n"
-    tests.each { |test| puts test }
+    testfile = TestFileGenerator.create_file(class_name)
+    File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}\n'
+")}
+    File.open(testfile, 'a') { |f| f.write("#{skeleton}\n")}
+    tests.each { |test| File.open(testfile, 'a') {|f| f.write("#{test}\n")} }
+    File.open(testfile, 'a') { |f| f.write("end")}
   end
 end
