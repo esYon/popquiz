@@ -42,7 +42,7 @@ class ClassGenerator
     puts "\n"
     attribute_accessor_syntax.each { |attr| puts attr }
     puts "\n"
-
+    
     testfile = TestFileGenerator.create_file(class_name)
     File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}\n'")}
     File.open(testfile, 'a') { |f| f.write("#{skeleton}\n")}
