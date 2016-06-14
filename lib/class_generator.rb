@@ -31,7 +31,7 @@ class ClassGenerator
     }
     tests = []
 
-    skeleton = "describe #{class_name} do \n" + "  " + "let(:obj) { #{class_name}.new } \n end"
+    skeleton = "describe #{class_name} do \n" + "  " + "let(:obj) { #{class_name}.new } \nend"
     # attribute_accessor_syntax.each { |test|
       # write actual test to a spec file using File operations
     attr_hash.each { |k,v|
@@ -42,9 +42,9 @@ class ClassGenerator
     puts "\n"
     attribute_accessor_syntax.each { |attr| puts attr }
     puts "\n"
-    
+
     testfile = TestFileGenerator.create_file(class_name)
-    File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}\n'")}
+    File.open(testfile, 'a') { |f| f.write("require_relative '../lib/#{class_name}'\n\n")}
     File.open(testfile, 'a') { |f| f.write("#{skeleton}\n")}
     tests.each { |test| File.open(testfile, 'a') {|f| f.write("#{test}\n")} }
     File.open(testfile, 'a') { |f| f.write("end")}
