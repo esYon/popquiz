@@ -23,6 +23,3 @@ root command to access troubleshooting: ```ruby lib/troubleshoot.rb```, simply a
 
 ##### The Future
 Open to any contributions! Lets build out a website or app to develop a better UI/UX
-
-# popquiz
-Popquiz is a Ruby gem designed to ease and expedite the TDD(Test-Driven-Development) software development process. TDD relies on the repetition of a very short development cycle: first an (initially failing) automated test case is written that defines a desired improvement or new function. Then, the minimum amount of code is written to pass that test, and finally one refactors the new code to acceptable standards.
