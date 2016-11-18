@@ -15,7 +15,7 @@ root command to access test generation: ```ruby lib/query.rb```, append any of t
 - ```method``` - generate tests for your class
 
 ##### Troubleshooting:
-root command to access troubleshooting: ```ruby lib/troubleshoot.rb```, simply append any of the following keywords:
+root command to access troubleshooting: ```ruby lib/troubleshoot.rb```, append any of the following keywords:
 
 - ```about``` - Learn about the project, what it does, what is coming in the future
 - ```attribute accessors``` - Learn what role attributes play in OOP, specifically, Ruby
