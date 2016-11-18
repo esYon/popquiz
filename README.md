@@ -5,7 +5,6 @@ Popquiz is a Ruby gem designed to ease and expedite the TDD(Test-Driven-Developm
 
 run ```bundle install``` / ```bundle update```
 
-
 #### From your command line, you have the following options:
 
 ##### Tests:
